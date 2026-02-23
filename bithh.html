@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Komal</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+
+.container{
+  text-align:center;
+  position:relative;
+}
+
+h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.name{
+  font-size:40px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.gallery{
+  position:relative;
+  width:320px;
+  height:420px;
+  margin:auto;
+}
+
+.gallery img{
+  position:absolute;
+  width:260px;
+  height:380px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  transition:all 0.5s ease;
+  cursor:pointer;
+}
+
+.img1{ left:-40px; top:20px; z-index:1; transform:scale(0.9);}
+.img2{ left:30px; top:0; z-index:3; transform:scale(1);}
+.img3{ right:-40px; top:20px; z-index:2; transform:scale(0.9);}
+
+.active{
+  left:30px !important;
+  right:auto !important;
+  top:0 !important;
+  z-index:5 !important;
+  transform:scale(1) !important;
+}
+
+button{
+  margin-top:25px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4e88;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ffeaa7;
+  transform:scale(1.05);
+}
+
+.message{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.sprinkle{
+  position:absolute;
+  font-size:22px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  0%{ transform:translateY(-50px); opacity:1;}
+  100%{ transform:translateY(500px); opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Happy Birthday 🌸</h1>
+  <div class="name">Komal</div>
+
+  <div class="gallery">
+    <img src="https://drive.google.com/file/d/1macnJo9M08GDIn567Y9s5t8Yfyh4tRdA/view?usp=drive_link" class="img1">
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" class="img2" onclick="activate(this)">
+    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91" class="img3" onclick="activate(this)">
+  </div>
+
+  <button onclick="celebrate()">Celebrate 🎉</button>
+
+  <div class="message">
+    🌸 May your strength grow like wild flowers.<br>
+    Stay fearless. Stay powerful. Keep shining brighter every year.<br>
+    The world needs your energy, Komal. 🌷
+  </div>
+</div>
+
+<script>
+
+function activate(clicked){
+  document.querySelectorAll(".gallery img").forEach(img=>{
+    img.classList.remove("active");
+  });
+  clicked.classList.add("active");
+}
+
+function sprinkle(){
+  const emojis=["🌸","🌺","🌷","✨","🎉","💖"];
+  const el=document.createElement("div");
+  el.classList.add("sprinkle");
+  el.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  el.style.left=Math.random()*100+"%";
+  el.style.top="0px";
+  el.style.animationDuration=(2+Math.random()*3)+"s";
+  document.querySelector(".gallery").appendChild(el);
+
+  setTimeout(()=>{el.remove();},4000);
+}
+
+function celebrate(){
+  for(let i=0;i<50;i++){
+    setTimeout(sprinkle,i*100);
+  }
+}
+
+</script>
+
+</body>
+</html>
